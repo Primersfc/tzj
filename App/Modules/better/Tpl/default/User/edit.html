@@ -1,0 +1,72 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/update/navTabId/listusers/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<input type="hidden" name="user_id" value="<{$vo.user_id}>"/>
+		<div class="pageFormContent" layoutH="60">
+		    <dl>
+				昵称邮件修改时要确保不重复
+			</dl>
+			<dl>
+				<dt>用户名：</dt>
+				<dd><{$vo.username}></dd>
+			</dl>
+			<dl>
+				<dt>昵称：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="name" value="<{$vo.name}>"/></dd>
+			</dl>
+			<dl>
+				<dt>邮件：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="email" value="<{$vo.email}>"/></dd>
+			</dl>
+			<dl>
+				<dt>id认证状态(012)：</dt>
+				<dd>
+					<input type="text"   style="width:100%" name="idcard" value="<{$vo.idcard}>"/>
+				</dd>
+			</dl>
+			<dl>
+				<dt>truename：</dt>
+				<dd>
+					<input type="text"   style="width:100%" name="truename" value="<{$vo.truename}>"/>
+				</dd>
+			</dl>
+			<dl>
+				<dt>studentid：</dt>
+				<dd>
+					<input type="text"   style="width:100%" name="studentid" value="<{$vo.studentid}>"/>
+				</dd>
+			</dl>
+			<dl>
+				<dt>手机号认证(136XXX)：</dt>
+				<dd>
+					<input type="text"   style="width:100%" name="checkphone" value="<{$vo.checkphone}>"/>
+				</dd>
+			</dl>
+			<dl>
+				<dt>邮箱状态(0/1)：</dt>
+				<dd>
+					<input type="text"  style="width:100%" name="checkemail" value="<{$vo.checkemail}>"/>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>状态：</dt>
+				<dd>
+					<input type="radio" name="islock" value="0" <if condition="$vo.islock eq 0 ">checked</if>/>正常
+					<input type="radio" name="islock" value="1" <if condition="$vo.islock eq 1 ">checked</if>/>锁定
+				</dd>
+			</dl>	
+			
+			
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

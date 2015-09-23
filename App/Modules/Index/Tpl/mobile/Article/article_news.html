@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="__ROOT__/" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{$article.biaoti}>-<{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{$article.summary}>" />
+<meta name="keywords" content="<{$article.keyword}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/page_all.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<script>
+          		$(function(){   
+    $("#loveit").click(function(){   
+        var love = $(this);   
+        var id = love.attr("rel"); //对应id   
+        love.fadeOut(300); //渐隐效果   
+        $.ajax({   
+            type:"POST",   
+            url:"index.php/index/article/love",   
+            data:"id="+id,   
+            cache:false, //不缓存此页面   
+            success:function(data){   
+                love.html(data);   
+                love.fadeIn(300); //渐显效果   
+            }   
+        });   
+        return false;   
+    }); 
+});  
+          	</script>
+</head>
+<body id="body" class="bg">
+<header> 
+  <!-- 导航开始 -->
+  <include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<include file="Public:classnav" />
+<div class="left_820">
+<div class="box share">
+<div class="box-tb">
+       <div class="title">
+       <em><a href="/index.php">首页</a>»网站公告</em>
+       </div>
+       </div>
+<div class="content" style=" margin: 20px; ">
+<div class="xxbt">
+<p style="line-height: 250%; margin-top: 0; margin-bottom: 0"><b><font style="font-size: 20pt" color: #000000;><font style="color:#F16100"></font><{$article.biaoti}></font></b></p>
+</div>
+<div style="clear:both;"></div>
+<div class=Ftext >
+<div style="float:left;font-size: 12px;">发布日期：<{$article.fbsj}>　浏览：<{$article.llcs}>次&nbsp;</div>
+<a  class="izan"   title="赞"  id="loveit" rel="<{$aid}>">(<{$article.approval}>赞)</a>
+<if condition="$article.username eq cookie('username')">
+<div style="float:right;font-size: 12px;">[<a target="_blank" href="/index.php/member/person/showedit/articleid/<{$article.article_id}>">编辑该信息</a>]</div>
+</if>
+</div>
+
+<div class="xxcontent"><div class="xxnr"><{$article.content}></div></div>
+
+<div style="clear:both;"></div>
+
+
+
+</div>
+</div>
+
+
+
+<div class="box share">
+	   <div class="box-tb">
+       <div class="title">
+       <em>公告留言</em>
+       </div>
+       </div>
+      <div class="content" id="comment">
+            <div class="cmt-box">
+              
+              <volist name="comments" id="li">
+			  <div class="cmt-item review_item_list">
+		     <a class="avatar"  user_id="<{$li.user_id}>" href="#" target="_blank"><img width="56px" height="56px" src="<{$li.photo}>"></a>
+            <div class="cmt-hd">
+			<a class="reply-btn" href="javascript:;" reply="<{$li.id}>">回复<i></i></a>
+			<span class="uname"><{$li.name}></span>
+			<span class="time"><{$li.hfsj}></span>
+			</div>
+			<div class="cmt-bd" id="94446"><div class="cmt-txt"><{$li.neirong}> </div></div>
+			
+            <if condition="$li.qian neq '' "><div class="cmt-qian">info:<{$li.qian}></div></if>
+			<if condition="$li.user_id eq cookie('userid') "><div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtdelete/cmtid/<{$li.id}>">删除评论</a></div></if>
+
+		   </div>
+		   <volist name="li['comments']" id="sub">
+			  <div class="cmt-item review_item_list" style="margin-left:65px;">
+		     <a class="avatar"  user_id="<{$sub.user_id}>" href="#" target="_blank"><img width="56px" height="56px" src="<{$sub.photo}>"></a>
+            <div class="cmt-hd">
+			<a class="reply-btn" href="javascript:;" reply="<{$sub.id}>" at-user="true">回复<i></i></a>
+			<span class="uname"><{$sub.name}></span>
+			<span class="time"><{$sub.hfsj}></span>
+			</div>
+			<div class="cmt-bd" id="94446"><div class="cmt-txt"><{$sub.neirong}> </div></div>
+            <if condition="$sub.qian neq '' "><div class="cmt-qian">info:<{$sub.qian}></div></if>
+			<if condition="$sub.user_id eq cookie('userid') "><div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtdelete/cmtid/<{$sub.id}>">删除评论</a></div></if>
+
+		   </div>
+	       </volist>
+		   </volist>
+<div class="reform" style="display: none;">
+        </div>
+		   <form action="/index.php/index/article/addComment" method="post" class="cmt-item" id="reviewForm" autocomplete="off">
+        	<input type="hidden"  name="article_id"  value="<{$article.article_id}>">
+        	<input type="hidden" value="0" name="pid">
+            <span class="avatar avatartop">
+			<if condition="$user.photo eq '' ">
+			<img  width="56px" height="56px" src="/sysimg/noheadphoto.gif" >
+			<else />
+			<img  width="56px" height="56px" src="<{$user.photo}>" >
+			</if>
+			</span>
+        	<div class="cmt-bd" id="review">
+        		<div class="cmt-textarea">
+					<if condition="cookie('username') eq '' ">
+					<textarea name="comment" placeholder="请登录后再评论..."></textarea>
+					<else />
+					<textarea name="comment" placeholder="我也来回复一发..."></textarea>
+					</if>
+				</div>
+			</div>
+            <div class="cmt-ft">
+				<input type="submit" class="cmt-btn" value="评论&nbsp;[&nbsp;Ctrl+Enter&nbsp;]">
+			</div>
+        </form>
+		
+              
+		      <{$show}>
+          </div>
+      </div>
+</div>
+
+
+
+
+
+
+</div><!-- end left -->
+<div class="sidebar">
+	   <div class="box newpub">
+        <div class="box-tb">
+       <div class="title">
+       <em>其他公告</em>
+       </div>
+       </div>
+        <div class="qg_content">
+        <foreach name="mnews" item="newpub">
+        <p class="p01"><a  target="_blank" href="<{:U('Index/Article/index/',array('articleid'=>$newpub['article_id']))}>" style="width: 270px;">
+        <{$newpub.biaoti}></a></p>
+       </foreach>
+         </div>
+      </div>
+	  </div>
+</div>
+  <div class="clean"></div>
+<!-- footer start -->
+<include file="Public:footer" />
+<!-- footer end -->
+</body>
+<script type="text/javascript">
+	$(function(){	
+				
+	    var form = $('.cmt-item:last');
+	    //插入回复表单
+	    $('.cmt-box').delegate('.reply-btn','click',function(event){
+	        var parent = $(this).closest('.cmt-item');
+	        //写入对应回复ID
+	        form.find(':hidden[name=pid]').val($(this).attr('reply'));
+	        var textarea = parent.append(form).find('textarea');
+	        //对回复回复的处理
+	        if($(this).attr('at-user') == 'true'){
+				var uname = $(this).parent().find('.uname').text();
+				textarea.text('回复 ' + uname + ' : ');
+		    }else{
+		    	textarea.text('');
+			}
+	        moveEnd(textarea.get(0));
+	        event.stopPropagation();
+	    })
+	    $('.cmt-box').delegate('.cmt-item','click',function(event){
+	        $(this).has('form').length && event.stopPropagation();
+	    })
+	    //点击评论框以外的地方，重置评论表单
+	    $(document).click(function(){
+		    if(form.find(':hidden[name=pid]').val() != 0){
+		    	$('.reform').after($('.cmt-box').find('form'));
+		        form.find(':hidden[name=pid]').val(0);
+		        form.find('textarea').text('');
+			}
+	    })
+	    //快捷键提交评论ok
+	    $("#reviewForm").find('textarea').on("keydown", function(e){
+	    	e.stopPropagation();
+	    	if(e.ctrlKey && e.which ==13){
+	    		$('#reviewForm').submit();
+	    	}
+	    });
+	    //删除评论绑定事件
+	    $('.cmt-box').delegate('.delete-review','click',function(event){
+	    	var self = $(this);
+		    var id = self.attr('review_id');
+		    $.ThinkBox.confirm('确定删除吗？',
+				{'cancel' : function(){this.hide();},
+				 'ok' : function(){
+					this.hide();
+					$.post(
+						'/review/deleteReview',
+						{'id':id},
+						function(data){
+							if(data.status == 1){
+								$.ThinkBox.success(data.info);
+								setTimeout(function(){window.location.reload();}, 2000);
+							}else{
+								$.ThinkBox.error(data.info);
+							}
+						},
+						'json'
+					);
+				 },
+				 'drag' : true,
+				 'modal' : true
+				}
+			 );
+		    
+		});
+	})
+	
+//将光标移动到textarea末尾,保持pid不被click清除
+	function moveEnd(obj){
+		obj.focus(); 
+	    var len = obj.value.length;
+	    if (document.selection) {
+	        var sel = obj.createTextRange(); 
+	        sel.moveStart('character',len); 
+	        sel.collapse(); 
+	        sel.select(); 
+	    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+	        obj.selectionStart = obj.selectionEnd = len; 
+	    } 
+	}
+	
+</script>
+</html>

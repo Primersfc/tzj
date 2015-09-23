@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>后台修改资源-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="/Js/jquery.js"></script>
+<script type="text/javascript" src="/Js/swfupload.js"></script>
+<script type="text/javascript" src="/Js/handlers.js"></script>
+<link href="../Public/Css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/fabu.css" rel="stylesheet" type="text/css" />
+<link href="/css/tzj.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/editor/themes/default/default.css" />
+<script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="fabubg">
+	<form method="post" action="/index.php/member/person/saveedit"   name="myform"">
+		
+                <div class="form-style">
+				<div class="form-title"><span>标题：</span></div>
+				<div class="form-content">
+				<input class="s-form" type="text" maxlength="25" style="width:340px" name="biaoti" placeholder="最多25个字" required="required" value="<{$olddata.biaoti}>"/>
+				</div>
+				</div>
+				<div class="form-style">
+				<div class="form-title"><span>分类：</span></div>
+				<div class="form-content" style="float: left;width: 500px;">
+				<select name="class1" id="first" style="float: left;margin-right: 5px;">
+				<option value="<{$c1.id}>" style="display:none;" selected="selected"><{$c1.name}></option>
+				<option value="">==请选择主分类==</option> 
+				<foreach name="clist" item="vo">
+					<option value="<{$vo.id}>" ><{$vo.name}></option>
+				</foreach>
+			    </select>
+				<span id="second"> 
+				<select id="area" name="class2">
+				<option value="<{$c2.id}>" style="display:none;" selected="selected"><{$c2.name}></option>
+				<foreach name="clist2" item="vo">
+					<option value="<{$vo.id}>" ><{$vo.name}></option>
+				</foreach>
+				</select> 
+				</span> 
+				</div>
+			    </div>
+
+			<div class="form-style">
+				<div class="form-title"><span>下载地址：</span></div>
+				<div class="form-content"><input type="text"   maxlength="255" style="width:340px" name="dlink" placeholder="如百度云下载链接" value="<{$olddata.dlink}>"/></div>
+			</div>
+			<div class="form-style">
+				<div class="form-title"><span>下载所需积分：</span></div>
+				<div class="form-content"><input type="text"   maxlength="3" name="jifen"placeholder="0~100积分" value="<{$olddata.jifen}>"onKeyUp="value=value.replace(/\D/g,'')"/></div>
+			</div>
+			<div class="form-style">
+			<div class="form-title"><span>资源摘要：</span></div>
+			<div class="form-content"><textarea class="required"  style="width:100%;height:200px" name="summary"><{$olddata.summary}></textarea></div>
+            </div>
+			<div class="form-style">
+			<div class="form-title"><span>资源详情：</span></div>
+			<div class="form-content" style="display: table;"><span style="display: table-cell;vertical-align: middle;">(插入的第一幅图片将被选作封面图片)</span></div>
+            </div>
+			<div style="margin-left: 140px;margin-bottom: 30px;"><textarea id="content" name="content" style="height:280px;" ><{$olddata.content}></textarea><p> 
+   <span class="word_surplus">还可以输入1000字</span> 
+</p></div>
+			
+
+
+
+		<input type="hidden" name="articleid"  value="<{$articleid}>"/>		
+        <div style="width:100%">
+		<button type="submit" onClick="javascript:return CheckForm();" class="form-submit">保存修改</button>
+        </div>
+	</form>
+</div>
+<div style="clear:both"></div>
+<include file="Index@Public:footer" />
+<script type="text/javascript" src="/Js/edit.js"></script>
+</body>
+</html>
+

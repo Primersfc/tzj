@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="__ROOT__/" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="keywords" content="<{:R('Siteinfo/info',array('keywords'),'Widget')}>" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+<body id="body"  class="bg" >
+<header>
+  <!-- 导航开始 -->
+ 	<include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<include file="Public:classnav" />
+<div class="container">
+
+<form class="form-signin" role="form" action="/index.php/push/pushall" method="post">
+         title:<input type="text" class="s-form login-form" name="title" placeholder="title" required="">
+         content <input type="password" class="s-form login-form" name="content" placeholder="ccontent" required="">
+
+		          <button class="btn btn-lg btn-primary btn-block" type="submit">PUSH</button>
+
+ </form>
+
+<!-- footer start -->
+<include file="Public:footer" />
+<!-- footer end -->
+<script type="text/javascript" src="js/index_all.js?v=2014517"></script>
+<script type="text/javascript" src="js/gototop.js?v=2014517"></script>
+</body>
+</html>

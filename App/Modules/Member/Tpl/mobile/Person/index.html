@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>个人中心-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<link href="/css/user.css" rel="stylesheet" media="screen">
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<include file="Index@Public:classnav" />
+  <div class="usermain">
+        <div class="memberleft" >
+		<div class="memberleft_top" >
+		<div class="membername">会员中心</div>
+		</div>
+		
+          <ul >
+              <li><a href="/index.php/member/person">我的首页</a></li>
+			  <li><a href="/index.php/member/person/article">我的发布</a></li>
+			  <li><a href="/index.php/member/person/reply">消息中心</a></li>
+              <li><a href="/index.php/member/person/person">个人资料</a></li>
+			  <li><a href="/index.php/index/login/doLogout.html">退出登录</a></li>
+          </ul>
+        </div>
+    <div class="membercontent">
+  <div class="m_pic">
+      <a href="/index.php/member/person/person" class="thumbnail" >
+          <if condition="$persons.photo eq null">
+            <img src="__AVATAR__/nophoto.gif">
+          <else/>
+            <img src="<{$persons.photo}>"></if>
+            <div class="m_label" >点击设置个性图像</div>
+        </a>
+  </div>
+      <div class="m_info">
+	  <h2>Hi,<{$persons.name}></h2></br></br>
+      <h4>注册日期<p class="text-muted"><{$persons.regtime|date="Y-m-d",###}></p></h4>
+      <h4>最后登录ip<p class="text-muted"><{$persons.ip}></p></h4>
+    </div>
+	  <table class="td" cellpadding="0" width="100%" style="color:#444444;font-family:宋体;font-size:12px;background-color:#FFFFFF;padding: 20px;margin-bottom:30px;">
+	<tbody>
+		<tr>
+			<td width="802" height="25" colspan="4" class="userbg">
+				<span style="font-size:16px;font-family:'Microsoft YaHei';">用户须知</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width="802" height="25" colspan="4" class="userbg">
+				<span style="font-size:16px;font-family:'Microsoft YaHei';">&nbsp;①交易成功后请及时确认成交~</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width="802" height="25" colspan="4" class="userbg">
+				<span style="font-size:16px;font-family:'Microsoft YaHei';">&nbsp;②推荐您选择校内当面交易，如若发生经济损失本平台不承担任何责任！</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width="802" height="25" colspan="4" class="userbg">
+				<span style="font-size:16px;font-family:'Microsoft YaHei';">&nbsp;③发布内容须符合国家规定，<span style="color:#444444;font-family:'Microsoft YaHei';font-size:16px;line-height:24px;background-color:#FFFFFF;">并且言语要文明</span>。</span> 
+			</td>
+		</tr>
+		<tr>
+			<td width="802" height="25" colspan="4" class="userbg">
+				<span style="font-size:16px;font-family:'Microsoft YaHei';">&nbsp;④在此发布信息前请阅读</span><a href="#"><span style="font-size:16px;font-family:'Microsoft YaHei';">免责声明</span></a> 
+			</td>
+		</tr>
+	</tbody>
+</table>
+	</div> 
+      </div>
+  
+  <div class="clean"></div>
+</div>
+<!-- footer start -->
+<include file="Index@Public:footer" />
+<!-- footer end -->
+</body>
+</html>

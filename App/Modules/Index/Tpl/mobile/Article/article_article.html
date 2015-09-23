@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{$article.biaoti}>-<{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{$article.summary}>" />
+<meta name="keywords" content="<{$article.keyword}>" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/mcss/common.css?v=111" rel="stylesheet" media="screen">
+<link href="/css/mcss/mpage.css?v=111" 	 rel="stylesheet" type="text/css">
+</head>
+<body id="body" class="bg">
+<header> 
+  <!-- 导航开始 -->
+  <include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<div class="page_nav">
+<div class="l"><a href="/index.php/list/index/type/2/c1/<{$c1.id}>"><{$c1.class1}></a>»<a href="/index.php/list/index/type/1/c1/<{$c1.id}>/c2/<{$c2.id}>"><{$c2.class2}></a></div>
+
+</div>
+<if condition="$article.imgs neq '' ">
+            <div id="box1" >
+               <a href="#" class="next-quote"></a>
+                <a href="#" class="prev-quote"></a>
+                <div class="quote-slider" data-snap-ignore="true">
+				<foreach name="allimg" item="imgs">
+				<div class="imgs-item">
+                            <a href="<?php echo str_replace("s_","b_",$imgs);?>" target=_blank title="点击可查看大图"><img src="<{$imgs}>" alt="信息图片" ></a>
+                        </div>
+						
+
+        	</foreach>
+                    
+                </div>
+			 </div>
+</if>
+
+
+<div class="box">
+
+	   <if condition="$article.username eq cookie('username')">
+<div style="float:right;margin-left:10px;font-size: 16px;"><a target="_blank"  href="/index.php/member/person/showedit/articleid/<{$article.article_id}>">[编辑该信息]</a></div>
+<div class="clear"></div>
+</if>
+<div class="xxbt">
+<p style="line-height: 220%; margin: 0px;"><b><font style="font-size: 24px" color: #000000;><font style="color:#F16100">[<{$article.leixing}>]</font><{$article.biaoti}></font></b></p>
+</div>
+<div style="clear:both;"></div>
+<div class=Ftext >
+<div style="float:left;font-size: 12px;">发布日期：<{$article.fbsj}>　浏览：<{$article.llcs}>次&nbsp;</div>
+<a  class="izan"   title="赞"  id="loveit" rel="<{$aid}>">(<{$article.approval}>赞)</a>
+</div>
+<div style="clear:both;"></div>
+<div class="xxlxfs">
+<ul>
+<li><if condition="$article.jiage neq ''"><div style="float:left;">价格：</div><div class="xx-jiage"><{$article.jiage}></div>元</if></li>
+<li>校区：<{$article.diqu}></li>
+<li>卖家：<{$article.name}><a href="#fbr">[他的资料]</a></li>
+<li>手机：<if condition="$article.dianhua eq ''">他没留下电话<else/><{$article.dianhua}></if> </li>
+<li>QQ&nbsp;&nbsp;：<if condition="$article.qq eq ''">他没留下qq<else/><{$article.qq}></if></li>
+<li>联系地址：<if condition="$article.dizhi eq ''">他没留下地址<else/><{$article.dizhi}></if></li>
+</ul>
+</div>
+
+<div style="clear:both;"></div>
+
+<div class="xxnr">
+<div class="xxtablest">
+<ul>
+<li style="margin-left: 10px;"><div id="xxm1" class="xxc_1"><a  style="cursor:pointer;font-size:16px;line-height:35px; font-weight:900;" onclick="lmqh(1)">内容详情</a></div></li>
+</ul>
+</div>
+<div class="pcontent"><{$article.content}></div>
+</div>
+</div>
+<div class="box share">
+	   <div class="box-tb">
+       <div class="title">
+       <em>信息评论</em>
+       </div>
+       </div>
+      <div class="content" id="comment">
+            <div class="cmt-box">
+              
+              <volist name="comments" id="li">
+			  <div class="cmt-item review_item_list">
+		     <a class="avatar"  user_id="<{$li.user_id}>" href="#" target="_blank"><img width="41px" height="41px" src="<{$li.photo}>"></a>
+            <div class="cmt-hd">
+			<a class="reply-btn" href="javascript:;" reply="<{$li.id}>">回复<i></i></a>
+			<span class="uname"><{$li.name}></span>
+			
+			</div>
+			<div class="cmt-bd"><div class="cmt-txt"><{$li.neirong}> </div></div>
+			
+            <if condition="$li.qian neq '' "><div class="cmt-qian">info:<{$li.qian}></div></if>
+			<if condition="$li.user_id eq cookie('userid') "><div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtdelete/cmtid/<{$li.id}>">删除</a></div></if>
+            <span class="time"><{$li.hfsj}></span>
+			<div class="clear"></div>
+		   </div>
+		   <volist name="li['comments']" id="sub">
+			  <div class="cmt-item review_item_list" style="margin-left:30px;">
+		     <a class="avatar"  user_id="<{$sub.user_id}>" href="#" target="_blank"><img width="41px" height="41px" src="<{$sub.photo}>"></a>
+            <div class="cmt-hd">
+			<a class="reply-btn" href="javascript:;" reply="<{$sub.id}>" at-user="true">回复<i></i></a>
+			<span class="uname"><{$sub.name}></span>
+			</div>
+			<div class="cmt-bd"><div class="cmt-txt"><{$sub.neirong}> </div></div>
+            <if condition="$sub.qian neq '' "><div class="cmt-qian">info:<{$sub.qian}></div></if>
+			<if condition="$sub.user_id eq cookie('userid') "><div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtdelete/cmtid/<{$sub.id}>">删除</a></div></if>
+            <span class="time"><{$li.hfsj}></span>
+			<div class="clear"></div>
+		   </div>
+	       </volist>
+		   </volist>
+<div class="reform" style="display: none;">
+        </div>
+		   <form action="/index.php/index/article/addComment" method="post" class="cmt-item" id="reviewForm" autocomplete="off">
+        	<input type="hidden"  name="article_id"  value="<{$article.article_id}>">
+        	<input type="hidden" value="0" name="pid">
+            <span class="avatar avatartop">
+			<if condition="$user.photo eq '' ">
+			<img  width="41px" height="41px" src="/sysimg/noheadphoto.gif" >
+			<else />
+			<img  width="41px" height="41px" src="<{$user.photo}>" >
+			</if>
+			</span>
+        	<div class="cmt-bd" id="review">
+        		<div class="cmt-textarea">
+					<if condition="cookie('username') eq '' ">
+					<textarea name="comment" placeholder="请登录后再评论..."></textarea>
+					<else />
+					<textarea name="comment" placeholder="我也来回复一发..."></textarea>
+					</if>
+				</div>
+			</div>
+            <div class="cmt-ft">
+				<input type="submit" class="cmt-btn" value="评论&nbsp;[&nbsp;Ctrl+Enter&nbsp;]">
+			</div>
+        </form>
+		
+              
+		      <{$show}>
+          </div>
+      </div>
+</div>
+
+
+<div class="box" name="fbr" id="fbr" style="height: auto;position: relative;padding: 8px 0px 8px;">
+<if condition="$fbr.photo neq '' "><img class="headphoto" src="<{$fbr.photo}>" alt="头像">
+<else />
+<img class="headphoto" src="/sysimg/noheadphoto.gif" alt="头像">
+</if>
+<div class="fbr_name">
+			掌柜：<a href="#"><{$fbr.name}></a>
+			</div>
+<div class="fbr_name">
+			注册日期：<?php echo date( 'y-m-d', strtotime( $fbr['regtime'] ) )?>
+			</div>
+			<div class="fbr_name">
+			<div class="l ">认证:</div>
+			<div class="id_ok-content">
+			<if condition="$fbr.idcard eq 2">
+			<div class="ok-id current"></div>
+			<else />
+			<div class="ok-id"></div>
+			</if>
+			<if condition="$fbr.checkphone neq '0'">
+			<div class="ok-phone current"></div>
+			<else />
+			<div class="ok-phone"></div>
+			</if>
+			<if condition="$fbr.checkemail eq 1">
+			<div class="ok-envelope current"></div>
+			<else />
+			<div class="ok-envelope"></div>
+			</if>
+			</div>
+			</div>
+			<div class="clean"></div>
+<!--<div class="fbr_lv" ><div class="r45">Lv.10</div></div> -->
+</div>
+<if condition="$marticle neq ''">
+<div class="box">
+        <div class="box-tb">
+       <div class="title">
+       <em>他的更多信息</em>
+       </div>
+       </div>
+        <div class="qg_content">
+        <foreach name="marticle" item="newpub">
+        <p class="p01"><a  target="_blank" href="<{:U('Index/Article/index/',array('articleid'=>$newpub['article_id']))}>" style="width: 270px;">
+        <{$newpub.biaoti}></a></p>
+       </foreach>
+         </div>
+      </div>
+</if>
+<div class="box">
+        <div class="box-tb">
+       <div class="title">
+       <em>本类相关</em>
+       </div>
+       </div>
+        <div class="qg_content">
+        <foreach name="similer" item="newpub">
+        <p class="p01"><a  target="_blank" href="<{:U('Index/Article/index/',array('articleid'=>$newpub['article_id']))}>" style="width: 270px;">
+        <{$newpub.biaoti}></a></p>
+       </foreach>
+         </div>
+      </div>
+
+	  </div>
+
+  <div class="clean"></div>
+<!-- bottomnav start -->
+<div class="bottom_nav">
+	    <ul>
+	        <li><a href="/" ><span class="index"></span>首页</a></li>
+	        <li><a  href="<{:U('index/list')}>"><span class="class"></span>分类</a></li>
+        	<li><a  href="<{:U('member/publish')}>"><span class="pub"></span>发布</a></li>
+	        <li><a href="#"><span class="sug"></span>推荐</a></li>
+			<if condition="cookie('userid') eq ''">
+	        <li><a href="<{:U('index/login')}>"><span class="my"></span>登陆</a></li>
+			<else />
+			<li><a href="<{:U('member/person')}>"><span class="my"></span>个人</a></li>
+			</if>
+	    </ul>
+
+	</div>
+<!-- bottomnav end -->
+<div style="display: none;"><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc6f47b5d5a8d4cd9b3c378d0d8934cab' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<script type="text/javascript" src="/js/mjs/page_all.js"></script>
+<script type="text/javascript" src="/js/mjs/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/js/mjs/framework.launcher.js"></script>
+</body>
+</html>

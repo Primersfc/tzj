@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>个人中心-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<link href="/css/user.css" rel="stylesheet" media="screen">
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<include file="Index@Public:classnav" />
+ <div class="usermain">
+        <div class="memberleft" >
+		<div class="memberleft_top" >
+		<div class="membername">会员中心</div>
+		</div>
+		
+          <ul >
+              <li><a href="/index.php/member/person">我的首页</a></li>
+			  <li><a href="/index.php/member/person/article">我的发布</a></li>
+			  <li><a href="/index.php/member/person/reply">消息中心</a></li>
+              <li><a href="/index.php/member/person/person">个人资料</a></li>
+			  <li><a href="/index.php/index/login/doLogout.html">退出登录</a></li>
+          </ul>
+        </div>
+    <div class="membercontent">
+     <div class="sellpart">
+	 <h2>出售中</h2>
+	 <if condition="$data eq ''">
+	 暂无出售中的商品。
+	 <else />
+<volist name="data" id="li">
+				
+				<div class="item" id="<{$li.article_id}>">
+					<div class="thumbnail">
+				        <div class="stickyImg"  >
+						<if condition="$li.imgs neq '' ">
+					    <a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						<else />
+						<a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="/sysimg/nophoto.jpg"></a>
+						</if>
+						</div>
+					<div class="caption">
+					  <div class="stickyContent">
+					    <h3 class="stickyTitle">[<{$li.leixing}>]<a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.biaoti}>"><{$li.biaoti}></a></h3>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float:left;"><{$li.diqu}>|<?php echo date( 'm-d', strtotime( $li['fbsj'] ) )?></div>
+                        <div style="float:right;"><a href="#" class=" l"><{$li.name}></a></div>
+                      </div>
+                    </div>
+                    <if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.jiage}>元</span>
+				    </if>
+					<div class="article_edit">
+					<a href="<{:U('member/person/showedit/',array('articleid'=>$li['article_id']))}>">编辑</a> <a href="<{:U('member/person/lockdata/',array('articleid'=>$li['article_id']))}>">下架</a> <a href="<{:U('member/person/sold/',array('articleid'=>$li['article_id']))}>">确认售出 </a>
+					</div>
+					</div>
+	                
+						
+				</div>
+				</volist>
+	</if>
+	</div>
+	<div class="clean"></div>
+<div class="sellpart">
+<h2>已下架</h2>
+<if condition="$udata eq ''">
+	 暂无出售中的商品。
+	 <else />
+<volist name="udata" id="li">
+				
+				<div class="item" id="<{$li.article_id}>">
+					<div class="thumbnail">
+				        <div class="stickyImg"  >
+						<if condition="$li.imgs neq '' ">
+					    <a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						<else />
+						<a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="/sysimg/nophoto.jpg"></a>
+						</if>
+						</div>
+					<div class="caption">
+					  <div class="stickyContent">
+					    <h3 class="stickyTitle">[<{$li.leixing}>]<a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.biaoti}>"><{$li.biaoti}></a></h3>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float:left;"><{$li.diqu}>|<?php echo date( 'm-d', strtotime( $li['fbsj'] ) )?></div>
+                        <div style="float:right;"><a href="#" class=" l"><{$li.name}></a></div>
+                      </div>
+                    </div>
+                    <if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.jiage}>元</span>
+				    </if>
+					<div class="article_edit">
+					<a href="<{:U('member/person/showedit/',array('articleid'=>$li['article_id']))}>">编辑</a> <a href="<{:U('member/person/republish/',array('articleid'=>$li['article_id']))}>">上架</a> <a href="<{:U('member/person/delete/',array('articleid'=>$li['article_id']))}>">删除 </a>
+					</div>
+					</div>
+	                
+						
+				</div>
+				</volist>
+	</if>
+	</div> 
+      </div>
+  </div>
+  <div class="clean"></div>
+</div>
+<!-- footer start -->
+<include file="Index@Public:footer" />
+<!-- footer end -->
+</body>
+</html>
+

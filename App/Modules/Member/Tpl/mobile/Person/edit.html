@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>修改信息-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="/Js/jquery.js"></script>
+<script type="text/javascript" src="/Js/swfupload.js"></script>
+<script type="text/javascript" src="/Js/handlers.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/fabu.css" rel="stylesheet" type="text/css" />
+<link href="/css/tzj.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/editor/themes/default/default.css" />
+<script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+<script>	var piclimit=<{$piclen}></script>
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="fabubg">
+	<form method="post" action="__URL__/saveedit"  class="pageForm required-validate" name="myform"">
+		
+                <div class="form-style">
+				<div class="form-title"><span>标题：</span></div>
+				<div class="form-content">
+				<input class="s-form" type="text" maxlength="25" style="width:340px" name="biaoti" placeholder="最多25个字" required="required" value="<{$olddata.biaoti}>"/>
+				</div>
+				</div>
+				<div class="form-style">
+				<div class="form-title"><span>分类：</span></div>
+				<div class="form-content" style="float: left;width: 500px;">
+				<select name="class1" id="first" style="float: left;margin-right: 5px;">
+				<option value="<{$c1.id}>" style="display:none;" selected="selected"><{$c1.class1}></option>
+				<option value="">==请选择主分类==</option>
+				<foreach name="clist" item="vo">
+					<option value="<{$vo.id}>" ><{$vo.class1}></option>
+				</foreach>
+			    </select>
+				<span id="second"> 
+				<select id="area" name="class2">
+				<option value="<{$c2.id}>" style="display:none;" selected="selected"><{$c2.class2}></option>
+				<foreach name="clist2" item="vo">
+					<option value="<{$vo.id}>" ><{$vo.class2}></option>
+				</foreach>
+				</select> 
+				</span> 
+				</div>
+			    </div>
+				<div class="form-style">
+				<div class="form-title"><span>信息类别：</span></div>
+				<div class="form-content">
+                <select name="leixing"><option value="<{$olddata.leixing}>" style="display:none;" selected="selected"><{$olddata.leixing}></option><option value="">类型</option><option value="二手">二手</option><option value="全新">全新</option><option value="赠与">赠与</option><option value="代购">代购</option><option value="出售">出售</option><option value="出租">出租</option><option value="兼职">兼职</option><option value="招聘">招聘</option><option value="求购">求购</option><option value="求租">求租</option><option value="培训">培训</option><option value="吃货">吃货</option><option value="优惠">优惠</option><option value="其他">其他</option></select>
+				</div></div> 
+			    <div class="form-style">
+				<div class="form-title"><span>校区：</div>
+				<div class="form-content">
+				<select name="diqu"><option value="<{$olddata.diqu}>" style="display:none;" selected="selected"><{$olddata.diqu}></option><option value="">选择地区</option><option value="一区">一区</option><option value="二区">二区</option><option value="建筑">建筑</option><option value="全校区">全校区</option><option value="其他">其他</option></select>
+			    </div>
+			    </div>
+				<div class="form-style"><div class="form-title"><span>交易地点：</span></div>
+				<div class="form-content">
+				<input type="text" name="dizhi" size="43" maxlength="50" placeholder="选填(例如：一校区二公寓、学士餐厅、一区主楼)" value="<{$olddata.dizhi}>">
+				</div>
+				</div>
+			<div class="form-style">
+				<div class="form-title"><span>价格：</div>
+				<div class="form-content"><input type="text"   maxlength="8" name="jiage" value="<{$olddata.jiage}>" placeholder="选填"/></div>
+			</div>
+			<div class="form-style"style="height:auto;min-height: 60px;">
+			<div class="form-content">
+				<div class="uppic">			
+				<span id="spanButtonPlaceholder"></span>
+				<div class="swftitle" >最多上传5张图片，有图片会被首页推荐</div>
+				<div class="clear"></div>
+				<div id="divFileProgressContainer"></div>
+				<div id="thumbnails">
+				<ul id="pic_list" style="margin: 5px;">
+				<foreach name="allimg" item="imgs">
+				<li><img class="content" src="<{$imgs}>" style="width:100px;height:100px;"><img class="button" onClick="olddel(this);" src="/App/Modules/Member/Tpl/default/Public/images/fancy_close.png"></li>
+        	    </foreach>
+				</ul>
+				<div style="clear: both;"></div>
+				</div>
+				</div>
+		</div>
+        </div>
+		<div style="clear: both;"></div>
+			<div class="form-style" >
+			<div class="form-title"><span>信息详情：</div>
+			</div>
+            <div style="margin-left: 140px;margin-bottom: 30px;"><textarea id="content" name="content" style="height:220px;" ><{$olddata.content}></textarea><p> 
+   <span class="word_surplus">还可以输入1000字</span> 
+</p></div>
+			<div class="form-style" >
+			<div class="form-title" ><span>发布者：</span></div>
+				<div class="form-content" STYLE="line-height: 35PX;"><{$olddata.name}></div>
+			</div>
+			<div class="form-title" style="width: 30%;margin: 20px;">电话、QQ至少填一项</div>
+			<hr  size="1" >
+			<div class="form-style" >
+			<div class="form-title"><span>联系电话：</span></div>
+			<div class="form-content"><input type="text" name="dianhua" size="21" maxlength="15" value="<{$olddata.dianhua}>" placeholder="电话、QQ至少填一项"></div>
+			</div>
+			<div class="form-style" ><div class="form-title"><span>联系QQ：</span></div>
+			<div class="form-content"><input type="text" name="qq" size="21" maxlength="11" value="<{$olddata.qq}>" onKeyUp="value=value.replace(/[^\d,.,-]/g,'')"placeholder="电话、QQ至少填一项" ></div>
+			</div>
+
+
+		<input type="hidden" name="imgs"  value="<{$olddata.imgs}>"/>	
+        <input type="hidden" name="articleid"  value="<{$articleid}>"/>		
+        <div style="width:100%">
+		<button type="submit" onClick="javascript:return CheckForm();" class="form-submit">保存修改</button>
+        </div>
+	</form>
+</div>
+<div style="clear:both"></div>
+<include file="Index@Public:footer" />
+
+<script type="text/javascript" src="/Js/edit.js"></script>
+</body>
+</html>

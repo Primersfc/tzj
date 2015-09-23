@@ -1,0 +1,340 @@
+<!--#include file="inc/conn.asp"-->
+<!--#include file="inc/jle_sub.asp"-->
+<!--#include file="stop_post.asp"-->
+<!--#include file=usercookies.asp-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><%=title%>-免费发布信息</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<meta name="Keywords"  content="<%=metakey%>" />
+<meta name="Description" content="<%=metades%>" />
+<link rel="icon" href="<%=web%>/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="<%=web%>/favicon.ico" type="image/x-icon" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language= "JavaScript" src="inc/zoom.js"></script>
+<link rel="stylesheet" href="/editor/themes/default/default.css" />
+<script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+<script>
+
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('textarea[name="memo"]', {
+            resizeType: 1,
+            uploadJson: '/editor/asp/upload_json.asp',
+            fileManagerJson: '/editor/asp/file_manager_json.asp',
+             afterChange : function() {
+      K('.word_count2').html(this.count('text')); 
+      var limitNum = 1000;
+      var pattern = '还可以输入' + limitNum + '字'; 
+      K('.word_surplus').html(pattern);
+      if(this.count('text') > limitNum) {
+       pattern = ('字数超过限制，请适当删除部分内容');
+       var strValue = editor.text();
+       strValue = strValue.substring(0,limitNum);
+       editor.text(strValue);      
+       } else {
+       var result = limitNum - this.count('text'); 
+       pattern = '还可以输入' +  result + '字'; 
+       }
+       K('.word_surplus').html(pattern);
+      },
+
+     
+            items: [
+						'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'source']
+
+        });
+    });
+
+</script>
+<script>/*上传1*1照片*/
+    KindEditor.ready(function (K2) {
+        var editor = K2.editor ({
+            uploadJson: '/editor/asp/upload_json2.asp',
+            fileManagerJson: '/editor/asp/file_manager_json.asp',
+
+        });
+        K2('#filemanager2').click(function () {
+            editor.loadPlugin('image', function () {
+                editor.plugin.imageDialog({
+                    showRemote: false,
+                    imageUrl: K2('#url').val(),
+                    clickFn: function (url, title, width, height, border, align) {
+                        K2('#url').val(url);
+                        editor.hideDialog();
+                    }
+                });
+            });
+        });
+
+   
+   
+   
+    });
+
+</script>
+
+<SCRIPT language=javascript>
+<!--
+function CheckForm()
+{
+if(document.myform.class1.value=="")
+	{
+	    alert("请选择一级分类!");
+        document.myform.class1.focus();
+        return false;
+	}
+if(document.myform.class2.value=="")
+	{
+	    alert("请选择二级分类!!");
+        document.myform.class2.focus();
+        return false;
+	}
+if(document.myform.diqu.value=="选择地区")
+	{
+	    alert("请您选择地区！");
+        document.myform.diqu.focus();
+        return false;
+	}
+
+if(document.myform.leixing.value.length<1)
+	{
+	    alert("请选择信息类别!");
+        document.myform.leixing.focus();
+	    return false;
+	}
+if(document.myform.biaoti.value.length<3)
+	{
+	    alert("信息标题没有填写或内容太少!");
+        document.myform.biaoti.focus();
+        document.myform.biaoti.select();
+	    return false;
+	}
+
+	if (document.myform.name.value.length == 0) {
+	    alert("请您填写联系人姓名！");
+	    document.myform.name.focus();
+	    return false;
+	}
+	var str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,./'[]{}`1234567890-=\~!@#$%^&*()_+|?><:";
+	var errorChar
+	errorChar = isCharsInBag(myform.name.value, str)
+	if (errorChar != "") {
+	    alert('联系人姓名必须是中文！');
+	    myform.name.focus();
+	    return false;
+	}
+	function isCharsInBag(s, bag) {
+	    var i, c;
+	    for (i = 0; i < s.length; i++) {
+	        c = s.charAt(i); //字符串s中的字符
+	        if (bag.indexOf(c) > -1)
+	            return c;
+	    }
+	    return "";
+	}
+
+	if (document.myform.name.value.length < 2 || document.myform.name.value.length > 4) {
+	    alert("联系人姓名不能少于2字多于4字！");
+	    document.myform.name.focus();
+	    document.myform.name.select();
+	    return false;
+	}
+	if (document.myform.dianhua.value.length == 0 && document.myform.qq.value.length == 0) {
+	    alert("电话QQ至少填一项！");
+	    document.myform.dianhua.focus();
+	    document.myform.dianhua.select();
+	    return false;
+	}
+
+}
+//-->
+</SCRIPT>
+</head>
+<body>
+<%call top()%><div id="Fmain">
+
+
+
+<div id=FFTit><a href="/" class=F12bold>首页</a>>><a href="#" class=F12bold>发布信息</a></div>
+<div class=kon></div>
+
+<div id=FFContent><div Class='FFveadiv'>
+
+
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<form action="xx_fabu_check.asp?jle=add" name="myform" method="POST">
+<table width="100%" border="0" cellpadding="0">
+<tr>
+<td height="27" colspan="2">
+<font color="#FF0000" style="padding-left: 50px;">注意：*为必填项，其他选填</font>
+<p style="margin-left: 25px">分类信息版块：
+<%
+dim rsclass,sqlclass
+set rsclass=server.createobject("adodb.recordset")
+sqlclass = "select * from class2 order by paixu desc"
+rsclass.open sqlclass,conn,1,1
+%>
+<SCRIPT language = "JavaScript">
+var onecount;
+onecount=0;
+subcat = new Array();
+        <%
+        count = 0
+        do while not rsclass.eof 
+        %>
+subcat[<%=count%>] = new Array("<%= trim(rsclass("class2"))%>","<%= trim(rsclass("class1"))%>","<%= trim(rsclass("id"))%>");
+        <%
+        count = count + 1
+        rsclass.movenext
+        loop
+        rsclass.close
+
+        %>
+onecount=<%=count%>;
+
+function changelocation(locationid)
+    {
+    document.myform.class2.length = 0; 
+
+    var locationid=locationid;
+    var i;
+    for (i=0;i < onecount; i++)
+        {
+            if (subcat[i][1] == locationid)
+            { 
+                document.myform.class2.options[document.myform.class2.length] = new Option(subcat[i][0], subcat[i][2]);
+            }        
+        }
+        
+    }    
+</SCRIPT><%
+sqlclass = "select * from class1 order by paixu desc"
+rsclass.open sqlclass,conn,1,1
+if rsclass.eof and rsclass.bof then
+response.write "请先添加栏目。"
+response.end
+else
+%><SELECT name="class1" onChange="changelocation(document.myform.class1.options[document.myform.class1.selectedIndex].value)" size="1">
+<OPTION selected value="">== 请选择主分类 ==</OPTION>
+<%do while not rsclass.eof
+%>
+<OPTION value="<%=trim(rsclass("id"))%>"><%=trim(rsclass("class1"))%></OPTION>
+<%
+rsclass.movenext
+loop
+end if
+rsclass.close
+set rsclass=nothing
+
+%>
+</SELECT> 
+<SELECT name="class2"><OPTION selected value="">== 次分类 ==</OPTION></SELECT> 
+<font color="#FF0000">*</font>栏目类别
+</p>
+</td>
+</tr>
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px">所在地区：<%call dix()%>&nbsp;&nbsp;<font color="#FF0000">*</font>选择您所属的校区</p></td>
+</tr>
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px; height: 25px; width: 666px;">信息类别：<%call leixs()%>&nbsp;<font color="#FF0000">*</font>&nbsp;&nbsp;标题： 
+<input type="text" maxlength="25" name="biaoti" size="40"> 
+<font color="#FF0000">*</font>标题请描述清楚</p></td>
+</tr>
+<tr>
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px">价　　格：<input type="text" name="jiage" size="10" maxlength="8"onKeyUp="value=value.replace(/[^\d,.,-]/g,'')"><font color="#FF0000">&nbsp;选填;&nbsp;</font><font color="#0000cc">如有需要可以填写，否则留空。</font></p>
+</td>
+</tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px">信息内容：&nbsp;<font color="#FF0000">*</font></p>
+</td>
+</tr>
+<tr >
+<td colspan="2" style="padding-left: 100px;">
+<textarea id="memo" name="memo" style="width:650px;height:300px;" cols="20"  rows="1" ></textarea>
+<p> 
+   <span class="word_surplus"></span> 
+</p>
+</td>
+</tr>
+<tr>
+<td  colspan="2">
+<p style="margin-left: 100px"><input type="text" id="url" name="tupian" /> <input type="button" id="filemanager2" value="上传封面图片" /></p>
+</td>
+</tr>
+<tr>
+<td >
+<p style="margin-left: 100px;">注：有封面图片会被<span style="color:#FF0000;">推荐</span>~</p>
+</td>
+</tr>
+<%
+
+if username<>"" then
+set rs=server.createobject("adodb.recordset")
+sql = "select * from [jle_shop] where username='"&username&"'"
+rs.open sql,conn,1,1
+if rs.eof then
+response.write "没有找到该用户"
+response.end
+end if
+%> 
+
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px">&nbsp; 联系人：<input type="text" name="name" size="10" maxlength="4" value="<%=rs("name")%>"> <input type="hidden" name="comper" value="com">
+<font color="#FF0000">*</font></p>
+</td>
+</tr>
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 50px">联系电话：<input type="text" name="dianhua" size="21" maxlength="15" value="<%=rs("dianhua")%>"></p>
+</td>
+</tr>
+<tr>
+<td height="26" colspan="2">
+<p style="margin-left: 55px">&nbsp;联系QQ：<input type="text" name="qq" size="12" maxlength="11" value="<%=rs("QQ")%>" onKeyUp="value=value.replace(/[^\d,.,-]/g,'')"></p>
+</td>
+</tr>
+<tr>
+<td height="26" colspan="2"><p style="margin-left: 50px">联系地址：<input type="text" name="dizhi" size="43" maxlength="50" value="<%=rs("dizhi")%>"></p>
+</td>
+</tr>
+<%end if%> 
+
+
+<tr>
+<td height="44" colspan="2">
+<p align="center"><input type="submit" onClick="javascript:return CheckForm();" value="发布信息" name="B1">　<input type="reset" value="重新来过" name="B2"> <INPUT type="button" value="返回" name="back" onClick="javascript:history.back()"></p>
+
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</div></div>
+ <br style="clear:both;" />
+<%rs.close 
+        set rs=nothing
+%>
+
+
+<div id="footer">
+<%call bottom()%>
+</div>
+</div>
+</body>
+</html>

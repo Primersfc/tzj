@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>发布信息-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/mcss/fabu.css" rel="stylesheet" type="text/css" />
+<link href="/css/mcss/common.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/editor/themes/default/default.css" />
+
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="fabubg">
+			<div class="form-style"style="height:auto;min-height: 40px;">
+			<div class="up-content">
+				<div class="uppic">
+	<span class="img-btn"><form id='formFile' name='formFile' method="post" action="/index.php/member/publish/muploadImg" target='frameFile'
+    enctype="multipart/form-data">
+    <input type='file' id='fileUp' name='fileUp' accept="image/*" />
+
+    </form>
+	</span>
+				<div class="uptitle" >点击左侧上传图片，最多5张，有图片会被首页<font style="color:#f40">推荐</font>~</div>
+				<div class="clear"></div>
+				<div id="divFileProgressContainer"></div>
+				<div id="thumbnails">
+				<ul id="pic_list" style="margin: 15px 0px;"></ul>
+				<div style="clear: both;"></div>
+				</div>
+				</div>
+		</div>
+        </div>
+<div style="clear: both;"></div>
+	<form method="post" action="__URL__/insert"   name="myform">
+		
+                <div class="form-style">
+				<div class="form-title"><span>标题：</span></div>
+				<div class="form-content">
+				<input class="s-form" type="text" maxlength="25" name="biaoti" placeholder="最多25个字" required="required"/>
+				</div>
+				</div>
+				<div class="form-style">
+				<div class="form-title"><span>分类：</span></div>
+				<div class="form-content" style="float: left;">
+				<select name="class1" id="first">
+				<option value="">=主分类=</option> 
+				<foreach name="clist" item="vo">
+					<option value="<{$vo.id}>" ><{$vo.class1}></option>
+				</foreach>
+			    </select>
+				<span id="second"> 
+				<select id="area" name="class2"> 
+				</select> 
+				</span> 
+				</div>
+			    </div>
+				<div class="form-style">
+				<div class="form-title"><span>信息类别：</span></div>
+				<div class="form-content">
+                <select name="leixing"><option value="">类型</option><option value="二手">二手</option><option value="代购">代购</option><option value="赠与">赠与</option><option value="出售">出售</option><option value="出租">出租</option><option value="兼职">兼职</option><option value="招聘">招聘</option><option value="求购">求购</option><option value="求租">求租</option><option value="培训">培训</option><option value="吃货">吃货</option><option value="优惠">优惠</option><option value="其他">其他</option></select>
+				</div></div> 
+			    <div class="form-style">
+				<div class="form-title"><span>校区：</div>
+				<div class="form-content">
+				<select name="diqu"><option value="">选择地区</option><option value="一区">一区</option><option value="二区">二区</option><option value="建筑">建筑</option><option value="全校区">全校区</option><option value="其他">其他</option></select>
+			    </div>
+			    </div>
+				<div class="form-style"><div class="form-title"><span>交易地点：</span></div>
+				<div class="form-content">
+				<input type="text" name="dizhi" size="43" maxlength="50" placeholder="选填(例如：一校区二公寓、学士餐厅、一区主楼)" value="<{$persons.dizhi}>">
+				</div>
+				</div>
+			<div class="form-style">
+				<div class="form-title"><span>价格：</div>
+				<div class="form-content"><input type="text"   maxlength="8" name="jiage"placeholder="选填"/></div>
+			</div>
+		<div style="clear: both;"></div>
+			<div class="form-style" >
+			<div class="form-title"><span>信息详情：</div>
+			</div>
+            <div style="margin-left: 10%;margin-bottom: 20px;"><textarea id="content" name="content" style="height:120px;" maxlength="1000"></textarea><p> 
+   <div id="b">最少5个字,还可以输入1000字 </div> 
+</p></div>
+
+			<div class="form-title" style="width: 50%;margin: 20px;">电话、QQ至少填一项</div>
+			<hr  size="1" >
+			<div class="form-style" >
+			<div class="form-title"><span>联系电话：</span></div>
+			<div class="form-content"><input type="text" name="dianhua" size="21" maxlength="15" value="<{$persons.dianhua}>" placeholder="电话、QQ至少填一项"></div>
+			</div>
+			<div class="form-style" ><div class="form-title"><span>联系QQ：</span></div>
+			<div class="form-content"><input type="text" name="qq" size="21" maxlength="11" value="<{$persons.qq}>" onKeyUp="value=value.replace(/[^\d,.,-]/g,'')"placeholder="电话、QQ至少填一项" ></div>
+			</div>
+
+<div style="text-align:center; padding:10px;"><a href="/exemption.html" >点此阅读免责声明</a></div>
+		<input type="hidden" name="imgs"  value=""/>		
+        <div style="width:100%">
+		<button type="submit" onClick="javascript:return CheckForm();" class="form-submit">发布信息</button>
+        </div>
+
+	</form>
+    <!--
+        这个iframe拿到post过来的表单数据后会开始在自身内部访问post过来的页面地址,在内部中它会刷新页面，
+        但是这已不重要了，因为当前的iframe已经被我display:none隐藏了！所以这样给用户看起来像是无刷新的
+        页面文件上传，其实只是做一个一个小小的技巧！
+    -->
+    <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
+</div>
+
+
+
+
+ 
+
+<div style="clear:both"></div>
+<!-- bottomnav start -->
+<div class="bottom_nav">
+	    <ul>
+	        <li><a href="/"><span class="index"></span>首页</a></li>
+	        <li><a  href="<{:U('index/list')}>"><span class="class"></span>分类</a></li>
+        	<li><a  href="<{:U('member/publish')}>"  class="cur"><span class="pub"></span>发布</a></li>
+	        <li><a href="#"><span class="sug"></span>推荐</a></li>
+			<if condition="cookie('userid') eq ''">
+	        <li><a href="<{:U('index/login')}>"><span class="my"></span>登陆</a></li>
+			<else />
+			<li><a href="<{:U('member/person')}>"><span class="my"></span>个人</a></li>
+			</if>
+	    </ul>
+
+	</div>
+<!-- bottomnav end -->
+<div style="display: none;"><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc6f47b5d5a8d4cd9b3c378d0d8934cab' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<script type="text/javascript" src="/Js/mjs/jquery.js"></script>
+<script type="text/javascript" src="/Js/mjs/fabu.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(function() {
+            $('#fileUp').change(function() {
+			var $svalue=$('form>input[name=imgs]').val();
+		$slength=$svalue.split('|')
+			if($slength.length<=4)
+			{
+			$('#imgShow').show();
+               $('#imgShow').attr('src', '/sysimg/loading.gif');
+                $('#formFile').submit();
+				}
+            });
+        })
+        function uploadSuccess(msg) {
+		$('#imgShow').attr('src', msg);
+		    var newpic = "<li><img class='content'  src='" + msg + "' style=\"width:50px;height:50px;\"><img class='button' src='/sysimg/fancy_close.png'></li>";
+    $("#pic_list").append(newpic);
+	$("img.button").last().bind("click", del);
+		var $svalue=$('form>input[name=imgs]').val();
+		$slength=$svalue.split('|')
+		if($slength.length<=4)
+		{
+			if($svalue==''){
+				$('form>input[name=imgs]').val(msg);
+			}
+			else{
+				$('form>input[name=imgs]').val($svalue+"|"+msg);
+			}
+                
+        }
+		}
+		
+var del = function(){
+	var src=$(this).siblings('img').attr('src');
+	var $svalue=$('form>input[name=imgs]').val();
+    var $val=$svalue.replace("|"+src,'');
+		    $val=$val.replace(src+"|",'');
+			$val=$val.replace(src,'');
+			$('form>input[name=imgs]').val($val);
+    $(this).parent().remove();
+}
+    </script>
+</body>
+</html>

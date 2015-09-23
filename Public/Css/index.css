@@ -1,0 +1,282 @@
+/*首页样式banner*/
+.bannerArea {
+	width: 630px;
+	float: left;
+	margin-right: 15px;
+}
+
+.banner2 {
+	height: 250px;
+	border: 0px solid #d6d6d6;
+	background: #eeeeee;
+	position: relative;
+}
+
+.slider {
+	height: 250px;
+	width: 630px;
+}
+
+.arrowLeft2 {
+	width: 22px;
+	height: 33px;
+	position: absolute;
+	left: 20px;
+	top: 110px;
+	z-index: 99;
+	display: none;
+}
+
+.arrowLeft2 a {
+	width: 22px;
+	height: 32px;
+	display: block;
+	background: url(../imgs/left_arrow.png) no-repeat left top;
+}
+
+.arrowLeft2 a:hover {
+	background: url(../imgs/left_arrow.png) no-repeat left -32px;
+}
+
+.rightArrow2 {
+	width: 22px;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 110px;
+	z-index: 99;
+	display: none;
+}
+
+.rightArrow2 a {
+	width: 22px;
+	height: 32px;
+	display: block;
+	background: url(../imgs/right_arrow.png) no-repeat left top;
+}
+
+.rightArrow2 a:hover {
+	background: url(../imgs/right_arrow.png) no-repeat left -32px;
+}
+
+.pager2 {
+	width: 60px;
+	height: 11px;
+	position: absolute;
+	left: 560px;
+	bottom: 14px;
+	z-index: 999;
+	text-indent: -9999px;
+}
+
+.pager2 a {
+	width: 10px;
+	height: 11px;
+	background: url(../imgs/pager_sprite.png) no-repeat left top;
+	display: block;
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+.pager2 a:hover, .pager2 a.activeSlide {
+	background: url(../imgs/pager_sprite.png) no-repeat left -11px;
+}
+
+.banner_smallBox {
+	
+}
+
+.small_box {
+	width: 230px;
+	height: 131px;
+	float: left;
+	margin: 0 14px 0 0;
+	border: 0px solid #cccccc;
+	background: #ededed;
+	text-align: center;
+}
+
+.nomar4 {
+	margin-right: 0px;
+}
+
+.banner2:hover .arrowLeft2, .banner2:hover .rightArrow2 {
+	display: block;
+}
+
+.more {
+	width: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #00a57f;
+	font-size: 14px;
+	padding-right: 10px;
+	font-weight: normal;
+}
+
+.more:hover {
+	color: #008062;
+}
+/*banner 右侧*/
+.banner2_right {
+	float: left;
+	width: 337px;
+}
+
+.subscribe_side {
+	border-top: 3px solid #00a57f;
+	border-bottom: 3px solid #dadada;
+	border-left: 1px solid #dadada;
+	border-right: 1px solid #dadada;
+	background: url(../imgs/subscribe_bg.jpg) repeat;
+	line-height: 30px;
+	overflow: hidden;
+}
+
+.my_sidebar_top {
+	height: 70px;
+	padding: 15px 16px 15px 16px;
+}
+
+.my_sidebar_title {
+	border-bottom: 1px solid #ccc;
+	margin: 5px;
+	height: 40px;
+}
+
+.my_sidebar_title .topic {
+	font-size: 20px;
+	font-family: 'Microsoft Yahei';
+	line-height: 35px;
+	padding-left: 10px;
+	font-weight: 400;
+	border-left: 3px solid #2F5EF1;
+	margin: 5px;
+}
+
+.sb_left {
+	float: left;
+	border-right: 1px solid #ccc;
+	margin: 8px;
+	padding-right: 25px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.sb_left .publish {
+	font-size: 30px;
+	color: #555;
+}
+
+.sb_right {
+	padding: 5px 0px 0px 0px;
+	line-height: 56px;
+	font-size: 16px;
+	text-align: center;
+	float: right;
+	width: 118px;
+}
+.down_app_wrap
+{
+	height:143px;
+	width:100%;
+	background:#fff;
+	border-top: 1px solid #dadada;
+}
+
+/*hezuo*/
+.hezuo-title {
+	height: 50px;
+	line-height: 50px;
+	font-size: 28px;
+	margin-top: 30px;
+	position: relative;
+}
+
+.hezuo-title .titleinner {
+	line-height: 36px;
+	padding-left: 10px;
+	font-weight: 400;
+	border-left: 3px solid #00a57f;;
+}
+
+.hezuo-wrap {
+	margin-bottom: 16px;
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	box-shadow: 1px 2px 5px #c5c5c5;
+	border-top: 3px solid #777777;
+	padding: 18px 18px 10px 18px;
+}
+
+.hz-item {
+	width: 145px;
+	float: left;
+	height: 100px;
+}
+
+.hz-item .link {
+	display: block;
+	width: 124px;
+	height: 66px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+}
+
+.hz-item .link img {
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.hz-item .title {
+	text-align: center;
+	margin-top: 5px;
+}
+/*Hot_product 推荐*/
+.Hot_product {
+	height: 310px;
+	margin-bottom: 15px;
+	border-top: 3px solid #777777;
+	border-bottom: 1px solid #e8e8e8;
+	overflow: hidden;
+	clear: both;
+	position: relative;
+}
+
+.Hot_product .item {
+	float: left;
+	width: 100%;
+	position: relative;
+	padding-top: 10px;
+	border-right: 1px solid #e8e8e8;
+}
+
+.Hot_product .big {
+	width: 21%;
+}
+
+.Hot_product .small {
+	width: 14.5%;
+}
+
+.Hot_product .small .item {
+	height: 150px;
+}
+
+.Hot_product .item-2, .Hot_product .item-4, .Hot_product .item-7,
+	.Hot_product .item-9 {
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.Hot_product .group {
+	float: left;
+}
+
+.Hot_product .big .item-content {
+	width: 220px;
+	height: 411px;
+}

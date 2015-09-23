@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{$class1.class1}>-<{$class2.class2}>-<{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="工大跳蚤街分类目录,<{$class1.class1}>,<{$class2.class2}>" />
+<meta name="keywords" content="<{:R('Siteinfo/info',array('keywords'),'Widget')}>" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<link rel="shortcut icon" href="/favicon.ico" />
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<body id="body" class="bg">
+<header> 
+  <!-- 导航开始 -->
+    <include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<include file="Public:classnav" />
+ <div class="clear"></div>
+ <div class="left_820">
+  <div class="box share" style="margin-bottom:8px;padding-bottom:0px;">
+<div class="box-tb">
+       <div class="title">
+       <em><a href="/">首页</a>&raquo;<a href="/index.php/list/index/type/2/c1/<{$class1.id}>"><{$class1.class1}></a>&raquo;<a href="/index.php/list/index/type/1/c1/<{$class1.id}>/c2/<{$class2.id}>"><{$class2.class2}></a></em>
+       </div>
+</div>
+<div class="content">
+<ul class="classnav">
+<volist name="cl2all" id="li">
+				
+				<li><a href="/index.php/list/index/type/1/c1/<{$class1.id}>/c2/<{$li.id}>"><{$li.class2}></a></li>	
+				</volist>
+</ul>
+</div>
+</div>
+
+<div class='clear'></div>
+<input type="hidden" value="12" id="nextrow" />
+
+
+			<div id="picload" >
+
+				<volist name="data" id="li">
+				
+				<div class="item" id="<{$li.article_id}>">
+					<div class="thumbnail">
+				        <div class="stickyImg"  >
+					    <if condition="$li.imgs neq '' ">
+					    <a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						<else />
+						<a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="/sysimg/nophoto.jpg"></a>
+						</if>
+						</div>
+					<div class="caption">
+					  <div class="stickyContent">
+					    <h3 class="stickyTitle">[<{$li.leixing}>]<a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.biaoti}>"><{$li.biaoti}></a></h3>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float:left;"><{$li.diqu}>|<?php echo date( 'm-d', strtotime( $li['fbsj'] ) )?></div>
+                        <div style="float:right;"><a href="#" class=" l"><{$li.name}></a></div>
+                      </div>
+                    </div>
+                    <if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.jiage}>元</span>
+				    </if>
+					</div>
+	
+						
+				</div>
+				</volist>
+
+	        </div>
+			<div class="clear"></div>
+			<{$show}>
+	
+ </div>
+<div class="sidebar">
+	   <div class="box newpub">
+        <div class="box-tb">
+       <div class="title">
+       <em>最热信息</em>
+       </div>
+       </div>
+        <div class="qg_content">
+        <foreach name="approval" item="newpub">
+        <p class="p01"><a  target="_blank" href="<{:U('Index/Article/index/',array('articleid'=>$newpub['article_id']))}>" style="width: 270px;">
+        <{$newpub.biaoti}></a></p>
+       </foreach>
+         </div>
+      </div>
+	  </div>  
+ 
+</div>
+<div class="clear"></div>
+<include file="Public:footer" />
+</body>
+</html>

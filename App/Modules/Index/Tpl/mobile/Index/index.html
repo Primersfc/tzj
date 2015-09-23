@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/mcss/common.css?v=111" rel="Stylesheet" type="text/css" />
+<link href="/css/mcss/index.css?v=111" rel="stylesheet" media="screen">
+</head>
+<body id="body"  class="bg" >
+<header>
+  <!-- 导航开始 -->
+ 	<include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<ul class="type">
+					<li><a href="<{:U('index/list/index?type=2&c1=25')}>">二手书籍</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=16')}>">跳蚤市场</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=30')}>">全新/代购</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=31')}>">租赁信息</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=26')}>">求购/交换</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=32')}>">失物招领</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=20')}>">校区周边</a></li>
+					<li><a href="<{:U('index/list/index?type=2&c1=22')}>">其他信息</a></li>
+  </ul>
+
+
+<div style="clear:both"></div>
+<div class="index_fenge">	  
+<div style="float:left; width:33%;margin-top: 10px;"><hr width=85% size=1 color=#5151A2 style="FILTER: alpha(opacity=100,finishopacity=0,style=3)"> </div>
+<div style="float: left;width: 34%;line-height: 60px;text-align: center;font-size: 16px;color: #00B600;font-weight: 600;"><?php echo color_txt("The newest");?></div>
+<div style="float:left; width:33%;margin-top: 10px;"><hr width=85% size=1 color=#5151A2 style="FILTER: alpha(opacity=100,finishopacity=0,style=3)"> </div>
+</div>
+<div class="clear"></div>	
+<input type="hidden" value="12" id="nextrow" />
+
+
+			<div id="picload" >
+
+				<volist name="data" id="li">
+				
+				<div class="item" id="<{$li.article_id}>">
+					<div class="thumbnail">
+				        <div class="stickyImg"  >
+					    <a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						</div>
+					<div class="caption">
+					  <div class="stickyContent">
+					    <h3 class="stickyTitle"><font style="color:#f40;">[<{$li.leixing}>]</font><a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.biaoti}>"><{$li.biaoti}></a></h3>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float:right;"><{$li.diqu}>|<?php echo date( 'm-d', strtotime( $li['fbsj'] ) )?></div>
+                      </div>
+                    </div>
+                    <if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.jiage}>元</span>
+				    </if>
+					</div>
+	
+						
+				</div>
+				</volist>
+
+	        </div>
+	<div style="clear:both"></div>
+
+	<div id="loading" class="loading-box" style="text-align: center;">
+		<span class="loading" >点此加载更多</span>
+	</div>
+	<div style="text-align:center;margin-top:12px;"><a href="?t=default">电脑版</a>    跳蚤街版权所有</div>
+  </div>
+<div class="clean"></div>
+ 
+  
+
+<!-- bottomnav start -->
+<div class="bottom_nav">
+	    <ul>
+	        <li><a href="/" class="cur"><span class="index"></span>首页</a></li>
+	        <li><a  href="<{:U('index/list')}>"><span class="class"></span>分类</a></li>
+        	<li><a  href="<{:U('member/publish')}>"><span class="pub"></span>发布</a></li>
+	        <li><a href="#"><span class="sug"></span>推荐</a></li>
+			<if condition="cookie('userid') eq ''">
+	        <li><a href="<{:U('index/login')}>"><span class="my"></span>登陆</a></li>
+			<else />
+			<li><a href="<{:U('member/person')}>"><span class="my"></span>个人</a></li>
+			</if>
+	    </ul>
+
+	</div>
+<!-- bottomnav end -->
+<script type="text/javascript" src="/js/mjs/jquery.js"></script>
+<script type="text/javascript" src="/js/mjs/index_all.js"></script>
+<div style="display: none;"><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc6f47b5d5a8d4cd9b3c378d0d8934cab' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+</body>
+</html>

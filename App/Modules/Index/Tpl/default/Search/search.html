@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>搜索页:<{$put}>-<{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+    <include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+
+ <div class="container">
+<include file="Public:classnav" />
+  <div class="left_820">
+        <div class="box share">
+<div class="box-tb">
+       <div class="title">
+       <em>信息搜索页：为您找到<{$count}>条与<span style="color:red"> <{$put}> </span>的相关内容</em>
+       </div>
+       </div>
+<div class="content">
+
+       <volist name="list" id="li">
+				
+				<div class="item1" id="<{$li.article_id}>">
+					<div class="thumbnail1">
+					    <div class="left">
+				        <div class="stickyImg1"  >
+						<if condition="$li.imgs neq '' ">
+					    <a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						<else />
+						<a   href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="/sysimg/nophoto.jpg"></a>
+						</if>
+						</div>
+						</div>
+					<div class="caption1">
+					  <div class="stickyContent1">
+					    <h3 class="stickyTitle1"><a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.biaoti}>"><{$li.biaoti}></a></h3>
+                      </div>
+					  <div class="stickySummary1">
+					    <div class="Summary1"><a href="<{:U('Index/Article/index/',array('articleid'=>$li['article_id']))}>" title="点击查看详情">&nbsp;&nbsp;&nbsp;&nbsp;<{$li.summary}></a></div>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float: right;margin-left: 15px;"><?php echo date( 'y-m-d', strtotime( $li['fbsj'] ) )?></div>
+                        <div style="float:right;"><a href="#"><{$li.name}></a></div>
+                      </div>
+                    </div>
+					<if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.jiage}>元</span>
+				    </if>
+
+					</div>
+	
+						
+				</div>
+				</volist>
+      <{$show}>
+ 
+    </div>
+</div>
+
+</div>
+
+       <div class="sidebar">
+	   <div class="box newpub">
+        <div class="box-tb">
+       <div class="title">
+       <em>最热信息</em>
+       </div>
+       </div>
+        <div class="qg_content">
+        <foreach name="approval" item="newpub">
+        <p class="p01"><a  target="_blank" href="<{:U('Index/Article/index/',array('articleid'=>$newpub['article_id']))}>" style="width: 270px;">
+        <{$newpub.biaoti}></a></p>
+       </foreach>
+         </div>
+      </div>
+	  </div>
+</div>
+  <div class="clean"></div>
+<!-- footer start -->
+<include file="Public:footer" />
+<!-- footer end -->
+</body>
+</html>

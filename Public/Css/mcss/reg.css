@@ -1,0 +1,101 @@
+body {
+  padding-bottom: 100px;
+  background:url(/sysimg/login_bg.jpg) no-repeat;
+  background-size:100%;
+  margin: 0px;
+}
+.form-signin {
+  width: 376px;
+  padding-top: 250px;
+  margin: 0 auto;
+  background:url(/sysimg/reg.png) no-repeat;
+  height:  600px;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+position: relative;
+font-size: 16px;
+height: auto;
+padding: 9px 10px 8px 10px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+width: 280px;
+margin:10px 0 10px 48px;
+background: rgba(255, 255, 255, 0.6);
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input {
+  margin-bottom: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: 0;
+  text-indent: 0.5em;
+}
+.form-signin span
+{margin-left:50px;}
+.form-control {
+display: block;
+line-height: 1.428571429;
+color: #555555;
+vertical-align: middle;
+border: solid #E2E2E2 1px;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.btn-primary {
+color: #ffffff;
+background-color: #428bca;
+border-color: #357ebd;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+color: #ffffff;
+background-color: #3276b1;
+border-color: #285e8e;
+}
+.btn:hover, .btn:focus {
+color: #e1e1e1;
+text-decoration: none;
+}
+.btn-block {
+display: block;
+width: 100%;
+padding-right: 0;
+padding-left: 0;
+}
+.btn {
+padding: 10px 16px;
+margin-left: 48px;
+width:280px;
+display: inline-block;
+margin-bottom: 0;
+font-size: 20px;
+font-weight: normal;
+line-height: 0.8;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+.reg
+{margin:0px 50px 10px;}

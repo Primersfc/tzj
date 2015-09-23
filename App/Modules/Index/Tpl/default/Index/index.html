@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="__ROOT__/" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title><{:R('Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="keywords" content="<{:R('Siteinfo/info',array('keywords'),'Widget')}>" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="__CSS__/common.css" rel="stylesheet" >
+<link href="__CSS__/index.css" rel="stylesheet" >
+<!-- <link href="__CSS__/tzj.css" rel="stylesheet" > -->
+<script src="__JS__/jquery-1.7.2.min.js"></script>
+</head>
+<body id="body"  class="bg" >
+<header>
+  <!-- 导航开始 -->
+ 	<include file="Public:header" />
+  <!-- 导航结束 --> 
+</header>
+	<include file="Public:menushow" />
+			<script>
+				$(".menu-list li").eq(0).css('background', '#00b38a'); //首页nav被选中
+				$(".item").eq(0).css('border-top', '0'); //首页nav被选中
+			</script>
+		<!--首页高亮-->
+<div class="main">
+		<!--menu begin-->
+		<div class="menu_right">
+			<!-- 首页幻灯start-->
+			<div class="bannerArea">
+				<div class="banner2">
+					<!--banner2 Start-->
+					<div class="slider">
+						<img src="public/Imgs/banner_pic1.jpg" width="630px" alt="" /> <img
+							src="img/banner_pic2.jpg" width="630px" alt=""
+							style="display: none;" /> <img src="img/banner_pic3.jpg"
+							width="630px" alt="" style="display: none;" /> <img
+							src="img/banner_pic4.jpg" width="630px" alt=""
+							style="display: none;" />
+					</div>
+					<div class="arrowLeft2">
+						<!--arrowLeft Start-->
+						<a href="#"></a>
+					</div>
+					<!--arrowLeft End-->
+					<div class="rightArrow2">
+						<!--arrowLeft Start-->
+						<a href="#"></a>
+					</div>
+					<!--arrowLeft End-->
+					<div class="pager2"></div>
+				</div>
+				<!--banner2 End-->
+			</div>
+			<div class="banner2_right">
+				<div class="subscribe_side">
+
+						<div class="my_sidebar_top">
+<div class="sb_left">
+<a href="index.php/member/publish" class="publish"><span>我要发布</span></a>
+</div>
+<div class="sb_right">
+已成交<font color="#f40;" style="font-size: 18px;"><{$jyl.jycg}></font>笔
+</div>
+
+</div>
+<div class="down_app_wrap">
+下载app
+</div>
+				</div>
+			</div>
+		</div>
+		<div class="clean"></div>
+<!-- 
+		<div class="hezuo-title">
+
+							<div class="titleinner">校内合作</div> <a target="_blank" class="more" href="/weibo"> 更多品牌
+								&gt;&gt; </a>
+								</div>
+		<div class="hezuo-wrap">
+		<volist name="hezuo" id="li">
+		<div class="hz-item">
+                    <a target="_blank" class="link" href="">
+                    <img src="<{$li.photourl}>">
+                    </a>
+                    <div class="title">
+                        <{$li.name}>                 </div>
+                </div>
+                </volist>
+		</div> -->
+<!--   首页推荐产品 -->
+  <div class="hezuo-title">
+  <div class="titleinner">推荐信息</div>
+<a target="_blank" class="more" href="/weibo"> 更多
+								&gt;&gt; </a>
+  </div>
+<div class="Hot_product" >
+
+  <ul>
+  <li class="group big">
+  <div class="item item-1">
+  <div class="item-content">
+ 内容待定</div>
+ <div class="line-2">ssss</div>
+ <div class="sub-title">ssssssss</div>
+ <div class="line-3"></div></div>
+ </li>
+ <li class="group small">
+ <div class="item item-2">
+ <div class="item-content">
+ <div class="line-1"></div>
+ </div>
+ </div>
+ <div class="item item-3">ssss</div>
+ </li>
+ <li class="group  small">
+ <div class="item item-4"> </div>
+ <div class="item item-5">ssss</div>
+</li>
+  <li class="group big">
+  <div class="item item-6">
+  <div class="item-content">
+ ssss</div>
+ <div class="line-2">ssss</div>
+ <div class="sub-title">ssssssss</div>
+ <div class="line-3"></div></div>
+ </li>
+  <li class="group small">
+ <div class="item item-7">
+ <div class="item-content">
+ <div class="line-1"></div>
+ </div>
+ </div>
+ <div class="item item-8">ssss</div>
+ </li>
+  <li class="group  small">
+ <div class="item item-7">
+ <div class="item-content">
+ <div class="line-1"></div>
+ </div>
+ </div>
+ <div class="item item-8">ssss</div>
+ </li>
+</ul>
+</div>
+
+
+<!--   最新发布 -->
+  <div class="hezuo-title">
+  <div class="titleinner">最新发布</div>
+<a target="_blank" class="more" href="/weibo"> 换一批
+								&gt;&gt; </a>
+  </div>
+
+<!-- left start -->
+
+
+
+
+<div style="width:820;float:left;height:100px;">
+
+<input type="hidden" value="12" id="nextrow" />
+
+
+			<div id="picload" >
+
+				<volist name="data" id="li">
+				
+				<div class="item" id="<{$li.article_id}>">
+					<div class="thumbnail">
+				        <div class="stickyImg"  >
+					    <a   href="<{:U('Article/index/',array('articleid'=>$li['article_id']))}>" ><img src="<{$li.imgs}>"></a>
+						</div>
+					<div class="caption">
+					  <div class="stickyContent">
+					    <h3 class="stickyTitle">[ssss]<a href="<{:U('Article/index/',array('articleid'=>$li['article_id']))}>" title="<{$li.title}>"><{$li.title}></a></h3>
+                      </div>
+					  <div style="height: 15px;">
+                        <div style="float:left;"><{$li.diqu}>|<?php echo date( 'm-d', strtotime( $li['fbsj'] ) )?></div>
+                        <div style="float:right;"><a href="#" class=" l"><{$li.user.username}></a></div>
+                      </div>
+                    </div>
+                    <if condition="$li.jiage neq '' ">
+					<span class="date"><{$li.price}>元</span>
+				    </if>
+					</div>
+	
+						
+				</div>
+				</volist>
+            	<div class="clean"></div>
+	        </div>
+
+	<!-- /底部 -->
+	<div id="loading" class="loading-box" style="display:none;text-align: center;">
+		<span class="loading" >加载中...</span>
+	</div>
+<!-- 底部 -->
+
+  </div><!-- left over -->
+ 
+  
+
+<!-- footer start -->
+<include file="Public:footer" />
+<!-- footer end -->
+<script  src="__JS__/index_all.js?v=2014517"></script>
+<script src="__JS__/jquery.cycle.all.js"></script>
+</body>
+</html>

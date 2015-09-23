@@ -1,0 +1,111 @@
+.usermain {
+margin-top:25px;
+min-height:400px;}
+.memberleft {
+width: 15%;
+float: left;
+background: #FDFDFD;
+-webkit-box-shadow: rgba(0, 0, 0, 0.22) 0 4px 8px 0;
+box-shadow: rgba(0, 0, 0, 0.22) 0 4px 8px 0;
+-moz-box-shadow: rgba(0, 0, 0, 0.22) 0 4px 8px 0;
+}
+.memberleft_top {
+border-bottom: 1px solid #ccc;
+margin: 5px;
+height: 45px;
+}
+.membername
+{
+line-height:45px;
+height: 45px;
+font-size:18px;
+text-align:center;
+overflow: hidden;
+}
+.memberleft  li
+{
+line-height: 35px;
+height: 35px;
+font-size: 16px;
+text-align:center;
+}
+.membercontent {
+width: 75%;
+margin-left: 40px;
+float:left;}
+.m_pic {
+width: 180px;
+padding: 5px;
+height: 200px;
+float: left;
+}
+.thumbnail>img {
+display: block;
+height: auto;
+max-width: 100%;
+margin-right: auto;
+margin-left: auto;
+margin-top: 5px;
+}
+.m_label {
+display: inline-block;
+font-weight: bold;
+margin-top: 5px;
+width: 160px;
+text-align: center;
+}
+.m_info {
+width: 66.66666666666666%;
+float: left;
+padding: 0 10px;
+}
+.text-muted {
+color: #999;
+}
+/*article*/
+.sellpart
+{min-height:150px;}
+.sellpart_title
+{min-height:150px;}
+.select_pic
+{float: left;
+margin:80px 0 30px 40px}
+.select_idpic
+{float: left;
+margin:20px 10px;
+width: 220px;
+overflow: hidden;}
+.edit_info
+{width: 80.0%;}
+.table {
+width: 100%;
+margin-bottom: 20px;
+}
+ .table>tbody>tr>th,.table>tbody>tr>td{
+padding: 15px;
+line-height: 1.428571429;
+vertical-align: middle;
+border-top: 1px solid #ddd;
+}
+ .table>tbody>tr>th{
+width: 15%;
+}
+.mnav-tabs {
+height:30px;
+}
+.article_edit
+{height: 40px;
+background: #E0E0E0;}
+.article_edit a
+{line-height:40px;
+font-size:20px;}
+/*person 认证*/
+.creditcontent
+{width:30%;
+float:left;
+background:#fff;
+border-right: solid 1px #dededf;
+border-bottom: solid 1px #dbdcde;
+height:250px;
+margin:10px;
+padding:0 10px;}

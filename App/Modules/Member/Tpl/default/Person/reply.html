@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>个人中心-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<link href="/css/user.css" rel="stylesheet" media="screen">
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+<include file="Index@Public:classnav" />
+ <div class="usermain">
+        <div class="memberleft" >
+		<div class="memberleft_top" >
+		<div class="membername">会员中心</div>
+		</div>
+		
+          <ul >
+              <li><a href="/index.php/member/person">我的首页</a></li>
+			  <li><a href="/index.php/member/person/article">我的发布</a></li>
+			  <li><a href="/index.php/member/person/reply">消息中心</a></li>
+              <li><a href="/index.php/member/person/person">个人资料</a></li>
+			  <li><a href="/index.php/index/login/doLogout.html">退出登录</a></li>
+          </ul>
+        </div>
+    <div class="membercontent">
+	<ul class="mnav-tabs">
+			<li><div class="veac_1" id="veam1"  onclick="lmqh(1)">回复我的</div></li>
+			<li ><div class="veac_0" id="veam2" onclick="lmqh(2)">我回复的</div></li>
+		</ul>
+    <div class="veablock" id="veas1">
+	 <h2>回复我的信息</h2>
+	 <if condition="$data eq ''">
+	 暂无回复信息。
+	 <else />
+ <div class="cmt-box">
+              
+              <volist name="data" id="li">
+			  <div class="cmt-item review_item_list">
+		     <a class="avatar"  user_id="<{$li.user_id}>" href="#" target="_blank"><img width="56px" height="56px" src="<{$li.photo}>"></a>
+			 <div class="cmt-hd">
+			 <a class="reply-btn" href="javascript:;" reply="<{$li.id}>" aid="<{$li.article_id}> ">回复<i></i></a>
+			来自主题：<if condition="$li.type eq 0"><a class="uname" href="/index.php/index/article/index/articleid/<{$li.article_id}>"><{$li.biaoti}></a>
+			          <else />
+					  <a class="uname" href="/index.php/index/article/news/articleid/<{$li.article_id}>"><{$li.biaoti}></a>
+					  </if>
+			</div>
+            <div class="cmt-hd">
+			
+			回复者：<span class="uname"><{$li.name}></span>
+			<span class="time"><{$li.hfsj}></span>
+			</div>
+			<div class="cmt-bd" id="94446"><div class="cmt-txt">内容：<{$li.neirong}> </div></div>
+			
+            <if condition="$li.qian neq '' "><div class="cmt-qian">info:<{$li.qian}></div></if>
+			<div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtread/cmtid/<{$li.id}>">不再显示此条回复</a></div>
+
+		   </div>
+		   </volist>
+		   <div class="reform" style="display: none;">
+        </div>
+		   <form action="/index.php/index/article/addComment" method="post" class="cmt-item" id="reviewForm" autocomplete="off" style="display:none;">
+        	<input type="hidden"  name="article_id"  value="">
+        	<input type="hidden" value="0" name="pid">
+            <span class="avatar avatartop">
+			<if condition="$user.photo eq '' ">
+			<img  width="56px" height="56px" src="/sysimg/noheadphoto.gif" >
+			<else />
+			<img  width="56px" height="56px" src="<{$user.photo}>" >
+			</if>
+			</span>
+        	<div class="cmt-bd" id="review">
+        		<div class="cmt-textarea">
+					<textarea name="comment" placeholder="想回复点什么？" style="background: 0;"></textarea>
+				</div>
+			</div>
+            <div class="cmt-ft">
+				<input type="submit" class="cmt-btn" value="评论&nbsp;[&nbsp;Ctrl+Enter&nbsp;]">
+			</div>
+        </form>
+		   </div>
+	</if>
+	</div>
+	
+	 <div class="veanone" id="veas2">
+	 <h2>我回复的信息</h2>
+	 <if condition="$data2 eq ''">
+	 暂无回复信息。
+	 <else />
+	  <div class="cmt-box">
+<volist name="data2" id="li">
+			  <div class=" review_item_list2">
+			 <div class="cmt-hd">
+			回复主题：<if condition="$li.type eq 0"><a class="uname" href="/index.php/index/article/index/articleid/<{$li.article_id}>"><{$li.biaoti}></a>
+			          <else />
+					  <a class="uname" href="/index.php/index/article/news/articleid/<{$li.article_id}>"><{$li.biaoti}></a>
+					  </if>
+			</div>
+            <div class="cmt-hd">
+			
+			收件人：<span class="uname"><{$li.name}></span>
+			<span class="time"><{$li.hfsj}></span>
+			</div>
+			<div class="cmt-bd" id="94446"><div class="cmt-txt">内容：<{$li.neirong}> </div></div>
+			<div class="cmt-qian cmt-del"><a class="cmt-del"href="/index.php/index/article/cmtdelete/cmtid/<{$li.id}>">删除评论</a></div>
+
+		   </div>
+		   </volist>
+		   </div>
+	</if>
+	</div>
+
+      </div>
+  </div>
+  <div class="clean"></div>
+</div>
+<!-- footer start -->
+<include file="Index@Public:footer" />
+<!-- footer end -->
+<script>
+function lmqh(s_id) {
+                for (i = 1; i < 3; i++) {
+                    if (i == s_id) {
+                        document.getElementById("veas" + i).className = "veablock"; //内容的样式
+                        document.getElementById("veam" + i).className = " veac_1";
+                    }
+                    else {
+                        document.getElementById("veas" + i).className = "veanone"; //内容不显示
+                        document.getElementById("veam" + i).className = "veac_0"; //
+                    }
+                }
+            }
+</script>
+<script type="text/javascript">
+	$(function(){	
+				
+	    var form = $('.cmt-item:last');
+	    //插入回复表单
+	    $('.cmt-box').delegate('.reply-btn','click',function(event){
+	        var parent = $(this).closest('.cmt-item');
+			 document.getElementById('reviewForm').style.display="block";
+	        //写入对应回复ID,article ID
+	        form.find(':hidden[name=pid]').val($(this).attr('reply'));
+			form.find(':hidden[name=article_id]').val($(this).attr('aid'));
+	        var textarea = parent.append(form).find('textarea');
+	        //对回复回复的处理
+	        if($(this).attr('at-user') == 'true'){
+				var uname = $(this).parent().find('.uname').text();
+				textarea.text('回复 ' + uname + ' : ');
+		    }else{
+		    	textarea.text('');
+			}
+	        moveEnd(textarea.get(0));
+	        event.stopPropagation();
+	    })
+	    $('.cmt-box').delegate('.cmt-item','click',function(event){
+	        $(this).has('form').length && event.stopPropagation();
+	    })
+	    //点击评论框以外的地方，重置评论表单
+	    $(document).click(function(){
+		    if(form.find(':hidden[name=pid]').val() != 0){
+		    	$('.reform').after($('.cmt-box').find('form'));
+		        form.find(':hidden[name=pid]').val(0);
+		        form.find('textarea').text('');
+			}
+			 document.getElementById('reviewForm').style.display="none";
+	    })
+	    //快捷键提交评论ok
+	    $("#reviewForm").find('textarea').on("keydown", function(e){
+	    	e.stopPropagation();
+	    	if(e.ctrlKey && e.which ==13){
+	    		$('#reviewForm').submit();
+	    	}
+	    });
+	    //删除评论绑定事件
+	    $('.cmt-box').delegate('.delete-review','click',function(event){
+	    	var self = $(this);
+		    var id = self.attr('review_id');
+		    $.ThinkBox.confirm('确定删除吗？',
+				{'cancel' : function(){this.hide();},
+				 'ok' : function(){
+					this.hide();
+					$.post(
+						'/review/deleteReview',
+						{'id':id},
+						function(data){
+							if(data.status == 1){
+								$.ThinkBox.success(data.info);
+								setTimeout(function(){window.location.reload();}, 2000);
+							}else{
+								$.ThinkBox.error(data.info);
+							}
+						},
+						'json'
+					);
+				 },
+				 'drag' : true,
+				 'modal' : true
+				}
+			 );
+		    
+		});
+	})
+	
+//将光标移动到textarea末尾,保持pid不被click清除
+	function moveEnd(obj){
+		obj.focus(); 
+	    var len = obj.value.length;
+	    if (document.selection) {
+	        var sel = obj.createTextRange(); 
+	        sel.moveStart('character',len); 
+	        sel.collapse(); 
+	        sel.select(); 
+	    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+	        obj.selectionStart = obj.selectionEnd = len; 
+	    } 
+	}
+	
+</script>
+</body>
+</html>
+

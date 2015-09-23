@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<title>个人资料-<{:R('Index/Siteinfo/info',array('title'),'Widget')}></title>
+<meta name="description" content="<{:R('Siteinfo/info',array('description'),'Widget')}>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/Js/jquery.js"></script>
+<script src="/Js/page_all.js"></script>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link href="/css/tzj.css" rel="stylesheet" media="screen">
+<link href="/css/user.css" rel="stylesheet" media="screen">
+</head>
+<body class="bg">
+<header> 
+  <!-- 导航开始 -->
+ 	<include file="Index@Public:header" />
+  <!-- 导航结束 --> 
+</header>
+<div class="container">
+    <include file="Index@Public:classnav" />
+ <div class="usermain">
+        <div class="memberleft" >
+		<div class="memberleft_top" >
+		<div class="membername">会员中心</div>
+		</div>
+		
+          <ul >
+              <li><a href="/index.php/member/person">我的首页</a></li>
+			  <li><a href="/index.php/member/person/article">我的发布</a></li>
+			  <li><a href="/index.php/member/person/reply">消息中心</a></li>
+              <li><a href="/index.php/member/person/person">个人资料</a></li>
+			  <li><a href="/index.php/index/login/doLogout.html">退出登录</a></li>
+          </ul>
+        </div>
+    <div class="membercontent">
+		<ul class="mnav-tabs">
+			<li><div class="veac_1" id="veam1"  onclick="lmqh(1)">基本资料</div></li>
+			<li ><div class="veac_0" id="veam2" onclick="lmqh(2)">密码修改</div></li>
+		</ul>
+
+<div class="veablock" id="veas1">
+<h1>①信誉认证</h1>
+			
+			
+			
+        <div class="creditcontent">
+		<if condition="$persons.idcard eq 0">
+		<h1><div class="ok-id" ></div>学生身份认证</h1>
+				正在争取和教务处合作，目前需要同学们上传学生证正面图片，人工审核<br>
+							<div class="select_idpic">
+								<form action="<{:U('Upper/idcard')}>" method="post" enctype="multipart/form-data">
+									<input type="file" name="photo" style="width: 220px;">
+									<hr>
+									<button type="submit" class="btn  btn-primary ">上传证件</button>	
+								</form>
+							</div>
+		<elseif condition="$persons.idcard eq 1"/>
+		<h1><div class="ok-id" ></div>学生身份认证</h1>
+		<br><br>证件图片已上传，我们会在一个工作日内进行认证,认证结果会以站内信形式通知您~
+		<elseif condition="$persons.idcard eq 2"/>
+		<h1><div class="ok-id current" ></div>学生身份认证</h1>
+		<img src="/sysimg/checkok.png" style=" margin: 15px 40px; width: 150px; ">
+		</if>
+		</div>
+<div class="creditcontent">
+<if condition="$persons.checkphone eq '0'">
+<h1><div class="ok-phone" ></div>手机认证</h1>
+		手机编辑短信：<br><br> 用户名+掌柜昵称<br><br> 发送到 13613600556<br><br> 我们会在一个工作日内进行审核,认证结果会以站内信通知您~
+<else/>
+		<h1><div class="ok-phone current" ></div>手机认证</h1>
+		<img src="/sysimg/checkok.png" style=" margin: 15px 40px; width: 150px; ">
+		</if>
+		</div>	
+<div class="creditcontent">
+<if condition="$persons.checkemail eq 0">
+<h1><div class="ok-envelope" ></div>邮箱认证</h1>
+发送认证邮件到:<br><br><font style="color:#f40;font-size:16px;"><{$persons.email}></font><br><br>
+			<a href="#">点此发送</a>
+<else/>
+		<h1><div class="ok-envelope current" ></div>邮箱认证</h1>
+		<img src="/sysimg/checkok.png" style=" margin: 15px 40px; width: 150px; ">
+		</if>			
+		</div>			
+	<div class="clean"></div>
+
+<h1>②头像修改</h1>
+								<div class="m_pic">
+      <a class="thumbnail" >
+          <if condition="$persons.photo eq null">
+            <img src="__AVATAR__/nophoto.gif">
+          <else/>
+            <img src="<{$persons.photo}>"></if>
+            <div class="m_label" >当前头像</div>
+        </a>
+  </div>
+							<div class="select_pic">
+								<form action="<{:U('Upper/index')}>" method="post" enctype="multipart/form-data">
+									<input type="file" name="photo">
+									<hr>
+									<button type="submit" class="btn  btn-primary ">上传头像</button>	
+								</form>
+							</div>
+	<div class="clean"></div>
+	<h1>③卖家资料修改</h1>
+	<div class="edit_info">
+		<form action="<{:U('Person/Profile')}>" method="post">
+				<table class="table">
+					<tbody>
+					<tr>
+						<th >登录账号</th>
+						<td><{$persons.username}></td>
+
+					</tr>
+					<tr>
+						<th>昵称</th>
+						<td><{$persons.name}></td>
+					<tr>
+						<th>email</th>
+							<td><{$persons.email}></td>
+
+							
+							
+					</tr>
+
+					</tr>
+					<tr>
+						<th>电话</th>
+						<td><input type="text" class="form-control" name="dianhua" maxlength="15" value="<{$persons.dianhua}>"></td>
+
+					</tr>
+					<tr>
+						<th>qq</th>
+						<td><input type="text" class="form-control" name="qq"  maxlength="11" onKeyUp="value=value.replace(/[^\d,.,-]/g,'')" value="<{$persons.qq}>"></td>
+
+					</tr>
+					<tr>
+						<th>交易地址</th>
+						<td><input type="text" class="form-control" name="dizhi" value="<{$persons.dizhi}>" placeholder="如一校区二公寓、学士餐厅、一区主楼"></td>
+
+					</tr>
+					
+					
+	
+							 <td colspan="2" style="text-align: center;">
+								<button class="btn  btn-primary">保存修改</button>
+							</td>
+									</tr>
+								</tbody></table>
+							</form>
+							</div>
+						</div>
+						
+						
+					<div class="veanone" id="veas2">
+							<div class="edit_info">
+							<form action="<{:U('Person/pwd')}>" method="post">
+								<table class="table" method="post">
+									<tbody><tr>
+										<th>原密码</th>
+										<td>      
+										<input type="password" class="form-control" name="password" required>
+										</td>
+									</tr>
+									<tr>
+										<th>新密码</th>
+										<td><input type="password" class="form-control" name="pwd" required></td>
+									</tr>
+									<tr>
+										<th>重复密码</th>
+										<td><input type="password" class="form-control" name="rpwd" required></td>
+									</tr>
+									
+									
+									<tr>
+										<td colspan="2">
+										<button type="submit" class="btn  btn-primary right">提交信息</button>
+										</td>
+									</tr>
+								</tbody></table>
+							</form>
+							</div>
+						</div>	
+						
+						
+						
+						
+						
+						
+	</div> 
+      </div>
+  
+  <div class="clean"></div>
+</div>
+<script>
+function lmqh(s_id) {
+                for (i = 1; i < 3; i++) {
+                    if (i == s_id) {
+                        document.getElementById("veas" + i).className = "veablock"; //内容的样式
+                        document.getElementById("veam" + i).className = " veac_1";
+                    }
+                    else {
+                        document.getElementById("veas" + i).className = "veanone"; //内容不显示
+                        document.getElementById("veam" + i).className = "veac_0"; //
+                    }
+                }
+            }
+</script>
+<!-- footer start -->
+<include file="Index@Public:footer" />
+<!-- footer end -->
+</body>
+</html>
+
